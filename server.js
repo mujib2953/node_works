@@ -8,10 +8,15 @@ const app = express();
 // --- connecting to DB
 connectDB();
 
-
 app.get("/", (req, res) => {
     res.send("API running");
 });
+
+// --- Defining all the routes
+app.use("/api/auth", require("./routes/api/auth"));
+app.use("/api/users", require("./routes/api/users"));
+app.use("/api/profile", require("./routes/api/profile"));
+app.use("/api/posts", require("./routes/api/posts"));
 
 app.listen(PORT, () =>{
     console.log(`Server started on ${PORT} port.`);
