@@ -9,6 +9,7 @@ const connectDB = async () => {
             // --- below lines are added due to warnings show on cli for MongoClient
             useNewUrlParser: true,
             useUnifiedTopology: true,
+            useCreateIndex: true,
         });
 
         console.log("MongoDB is connected.");
