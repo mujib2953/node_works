@@ -86,7 +86,6 @@ router.post("/", [
     if (linkedin) profileFields.social.linkedin = linkedin;
     if (instagram) profileFields.social.instagram = instagram;
 
-
     try {
 
         let profile = await Profile.findOne({ user: req.user.id });
@@ -96,7 +95,7 @@ router.post("/", [
                 { user: req.user.id },
                 { $set: profileFields },
                 { new: true }
-            );
+            ).populate("user", [ "name", "avatar" ]);
 
             return res.json(profile);
         }
@@ -112,4 +111,23 @@ router.post("/", [
         return res.status(500).send("Server Error.");
     }
 });
+
+
+/*
+* @route_type   : GET
+* @route_url    : api/profile
+* @desc         : This will return all profiles in a system
+* @access       : public
+*/
+
+router.get("/", async (req, res) => {
+    try {
+        let profile = await Profile.find().populate("user", ["name", "avatar"]);
+        res.json(profile);
+    } catch(e) {
+        console.error(e.message);
+        res.status(500).send("Server Error.");
+    }
+});
+
 module.exports = router;
