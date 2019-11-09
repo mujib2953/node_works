@@ -119,10 +119,30 @@ router.post("/", [
 * @desc         : This will return all profiles in a system
 * @access       : public
 */
-
 router.get("/", async (req, res) => {
     try {
         let profile = await Profile.find().populate("user", ["name", "avatar"]);
+        res.json(profile);
+    } catch(e) {
+        console.error(e.message);
+        res.status(500).send("Server Error.");
+    }
+});
+
+/*
+* @route_type   : GET
+* @route_url    : api/profile/user/:user_id
+* @desc         : This will return profiles of given user
+* @access       : public
+*/
+router.get("/user/:user_id", async (req, res) => {
+    try {
+        let profile = await Profile.findOne({ user: req.params.user_id }).populate("user", ["name", "avatar"]);
+
+        if (!profile) {
+            return res.status(400).json({ msg: "There is no profile for this user." });
+        }
+
         res.json(profile);
     } catch(e) {
         console.error(e.message);
