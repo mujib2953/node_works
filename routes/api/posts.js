@@ -8,16 +8,6 @@ const Profile = require("../../models/Profile");
 const Post = require("../../models/Post");
 
 /*
-* @route_type   : GET
-* @route_url    : api/posts
-* @desc         : Testing route
-* @access       : public
-*/
-router.get("/", (req, res) => {
-    res.send("Inside Posts root route.");
-});
-
-/*
 * @route_type   : POST
 * @route_url    : api/posts
 * @desc         : Creates new post
@@ -56,6 +46,81 @@ router.post("/", [
     } catch(error) {
         console.error(error.message);
         return res.status(500).send("Server Error");
+    }
+});
+
+/*
+* @route_type   : GET
+* @route_url    : api/posts
+* @desc         : Get All Posts in an application
+* @access       : private
+*/
+router.get("/", auth, async (req, res) => {
+    try {
+        const posts = await Post.find().sort({ date: -1 });
+        res.json(posts);
+    } catch(error) {
+        console.error(error.message);
+        res.status(500).send("Server Error.");
+    }
+});
+
+/*
+* @route_type   : GET
+* @route_url    : api/posts
+* @desc         : Get Post by id
+* @access       : private
+*/
+router.get("/:post_id", auth, async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.post_id);
+
+        if (!post) {
+            return res.status(400).json({ msg: "Post Not Found." });
+        }
+
+        res.json(post);
+    } catch(error) {
+        console.error(error.message);
+
+        if (!error.kind === "ObjectId") {
+            return res.status(400).json({ msg: "Post Not Found." });
+        }
+
+        res.status(500).send("Server Error.");
+    }
+});
+
+/*
+* @route_type   : DELETE
+* @route_url    : api/posts
+* @desc         : Delete Post by id
+* @access       : private
+*/
+router.delete("/:post_id", auth, async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.post_id);
+
+        if (!post) {
+            return res.status(400).json({ msg: "Post Not Found." });
+        }
+
+        // --- checking user
+        if (post.user.toString() !== req.user.id) {
+            return res.status(401).json({ msg: "User not authorized." });
+        }
+
+        await post.remove();
+
+        res.json({ msg: "Post removed." });
+    } catch(error) {
+        console.error(error.message);
+
+        if (!error.kind === "ObjectId") {
+            return res.status(400).json({ msg: "Post Not Found." });
+        }
+
+        res.status(500).send("Server Error.");
     }
 });
 
