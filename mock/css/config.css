@@ -129,7 +129,7 @@ img {
 .btn {
     display: inline-block;
     background: var(--light-color);
-    color: #FFF;
+    color: #333;
     padding: 0.4rem 1.3rem;
     font-size: 1rem;
     border: none;
