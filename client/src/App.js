@@ -1,11 +1,17 @@
-import React from 'react';
-import './App.css';
+import React, { Fragment } from 'react';
+
+import Navbar from './components/layout/Navbar';
+import Landing from './components/layout/Landing';
+
+import "./css/Common.css";
+import "./css/App.css";
 
 function App() {
 	return (
-		<div className="App">
-			Hello World...
-		</div>
+		<Fragment>
+			<Navbar />
+			<Landing />
+		</Fragment>
 	);
 }
 
