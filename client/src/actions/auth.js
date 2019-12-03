@@ -7,6 +7,8 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
 
+    LOGOUT,
+
     USER_LOADED,
     AUTH_ERROR,
 } from "./types";
@@ -100,4 +102,15 @@ export const loadUser = () => async dispatch => {
             type: AUTH_ERROR,
         });
     }
+}
+
+/*
+* This will logout the user from the application
+* and then destroy the jwtToken
+*/
+
+export const logout = () => async dispatch => {
+    dispatch({
+        type: LOGOUT
+    });
 }
