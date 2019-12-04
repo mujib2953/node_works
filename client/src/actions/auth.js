@@ -11,6 +11,8 @@ import {
 
     USER_LOADED,
     AUTH_ERROR,
+
+    CLEAR_PROFILE,
 } from "./types";
 import { setAlert } from "./alert";
 import setAuthToken from "../utils/setAuthToken";
@@ -111,6 +113,10 @@ export const loadUser = () => async dispatch => {
 
 export const logout = () => async dispatch => {
     dispatch({
-        type: LOGOUT
+        type: CLEAR_PROFILE,
+    });
+    
+    dispatch({
+        type: LOGOUT,
     });
 }
