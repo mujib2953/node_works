@@ -1,13 +1,20 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-const Dashboard = ({ user_name }) => {
+import { getCurrentProfile } from "../../actions/profile";
+
+const Dashboard = ({ getCurrentProfile, auth, profile }) => {
+
+    useEffect(() => {
+        getCurrentProfile();
+    }, []);
+
     return (
         <Fragment>
             <h1 className="large text-primary">Dashboard</h1>
             <p className="lead">
-                <i className="fas fa-user"></i> Welcome { user_name }
+                <i className="fas fa-user"></i> Welcome John Doe
             </p>
 
             <div className="dash-button">
@@ -103,11 +110,14 @@ const Dashboard = ({ user_name }) => {
 }
 
 Dashboard.propTypes = {
-    user_name: PropTypes.string.isRequired,
+    getCurrentProfile: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    profile: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
-    user_name: "Test"
+    auth: state.auth,
+    profile: state.profile,
 });
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps, { getCurrentProfile })(Dashboard);
