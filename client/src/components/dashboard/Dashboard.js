@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 
 import { getCurrentProfile } from "../../actions/profile";
 import Spinner from "../layout/Spinner";
+import DashboardActions from "./DashboardActions";
 
 const Dashboard = ({
     getCurrentProfile,
@@ -29,7 +30,9 @@ const Dashboard = ({
 
             {
                 profile !== null ? (
-                    <Fragment>Has Profile</Fragment>
+                    <Fragment>
+                        <DashboardActions />
+                    </Fragment>
                 ) : (
                     <Fragment>
                         <p>You haven't setup a profile, please add some info</p>
@@ -39,19 +42,6 @@ const Dashboard = ({
                     </Fragment>
                 )
             }
-            <div className="dash-button">
-                <a href="edit-profile.html" className="btn btn-light">
-                    <i className="fas fa-user-circle text-primary"></i> Edit Profile
-                </a>
-
-                <a href="add-experience.html" className="btn btn-light">
-                    <i className="fab fa-black-tie text-primary"></i> Add Experience
-                </a>
-
-                <a href="add-education.html" className="btn btn-light">
-                    <i className="fas fa-graduation-cap text-primary"></i> Add Education
-                </a>
-            </div>
 
             <h2 className="my-2">Experience Credentials</h2>
             <table className="table">
