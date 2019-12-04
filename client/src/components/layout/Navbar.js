@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import propTypes from "prop-types";
+import PropTypes from "prop-types";
 
 import { logout } from "../../actions/auth";
 
@@ -12,7 +12,8 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
             <li><a href="profiles.html">Developers</a></li>
             <li><a href="posts.html">Posts</a></li>
             <li>
-                | <a href="dashboard.html" title="Dashboard">
+                <a href="/dashboard" title="Dashboard">
+                    <i className="fas fa-user"></i>{ " " }
                     <span className="hide-sm">Dashboard</span>
                 </a>
             </li>
@@ -58,8 +59,8 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 }
 
 Navbar.propTypes = {
-    auth: propTypes.object.isRequired,
-    logout: propTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    logout: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
