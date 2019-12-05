@@ -8,7 +8,9 @@ import Register from "./components/auth/Register";
 import Alert from "./components/layout/Alert";
 import Dashboard from "./components/dashboard/Dashboard";
 import CreateProfile from "./components/profile-forms/Createprofile";
-import Editprofile from "./components/profile-forms/EditProfile"
+import Editprofile from "./components/profile-forms/EditProfile";
+import AddExperince from "./components/profile-forms/AddExperince";
+import AddEducation from "./components/profile-forms/AddEducation";
 
 // --- HOC
 import PrivateRoute from "./components/routing/PrivateRoute";
@@ -41,9 +43,13 @@ function App() {
 						<Switch>
 							<Route exact path="/login" component={ Login } />
 							<Route exact path="/register" component={ Register } />
+
+							{/* Private Routes */}
 							<PrivateRoute exact path="/dashboard" component={ Dashboard } />
 							<PrivateRoute exact path="/create-profile" component={ CreateProfile } />
 							<PrivateRoute exact path="/edit-profile" component={ Editprofile } />
+							<PrivateRoute exact path="/add-experience" component={ AddExperince } />
+							<PrivateRoute exact path="/add-education" component={ AddEducation } />
 						</Switch>
 					</section>
 				</Fragment>
