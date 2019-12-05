@@ -138,7 +138,7 @@ const AddEducation = ({ addEducation, history }) => {
     );
 }
 
-AddEducation.prototype = {
+AddEducation.propTypes = {
     addEducation: PropTypes.func.isRequired,
 };
 

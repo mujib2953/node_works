@@ -138,7 +138,7 @@ const AddExperience = ({ addExperience, history }) => {
     );
 }
 
-AddExperience.prototype = {
+AddExperience.propTypes = {
     addExperience: PropTypes.func.isRequired,
 };
 
