@@ -11,6 +11,7 @@ import CreateProfile from "./components/profile-forms/Createprofile";
 import Editprofile from "./components/profile-forms/EditProfile";
 import AddExperince from "./components/profile-forms/AddExperince";
 import AddEducation from "./components/profile-forms/AddEducation";
+import Profiles from "./components/profiles/Profiles";
 
 // --- HOC
 import PrivateRoute from "./components/routing/PrivateRoute";
@@ -43,6 +44,7 @@ function App() {
 						<Switch>
 							<Route exact path="/login" component={ Login } />
 							<Route exact path="/register" component={ Register } />
+							<Route exact path="/profiles" component={ Profiles } />
 
 							{/* Private Routes */}
 							<PrivateRoute exact path="/dashboard" component={ Dashboard } />
