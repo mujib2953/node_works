@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import { connect } from "react-redux";
 
-import { addLike, removeLike } from "../../actions/post";
+import { addLike, removeLike, deletPost } from "../../actions/post";
 
 const PostItem = ({
     auth,
@@ -19,7 +19,8 @@ const PostItem = ({
         date,
     },
     addLike,
-    removeLike
+    removeLike,
+    deletPost,
 }) => {
     return (
         <Fragment>
@@ -69,6 +70,7 @@ const PostItem = ({
                             <button
                                 type="button"
                                 className="btn btn-danger"
+                                onClick={ e => deletPost(_id) }
                             >
                                 <i className="fas fa-times"></i>
                             </button>
@@ -85,6 +87,7 @@ PostItem.propTypes = {
     auth: PropTypes.object.isRequired,
     addLike: PropTypes.func.isRequired,
     removeLike: PropTypes.func.isRequired,
+    deletPost: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -95,6 +98,7 @@ export default connect(
     mapStateToProps,
     {
         addLike,
-        removeLike
+        removeLike,
+        deletPost,
     }
 )(PostItem);
