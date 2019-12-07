@@ -26,35 +26,38 @@ const ProfileGithub = ({
                 (repos === null) ? (
                     <Spinner />
                 ) : (
-
-                    repos.map(repo => (
-                        <div
-                            className="repo bg-white p-1 my-1"
-                            key={ repo._id }
-                        >
-                            <div>
-                                <h4>
-                                    <a
-                                        href={ repo.url }
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        { repo.name }
-                                    </a>
-                                </h4>
-                                <p>
-                                    { repo.desription }
-                                </p>
+                    (repos.length === 0) ? (
+                        <h4>No github repo found.</h4>
+                    ) : (
+                        repos.map(repo => (
+                            <div
+                                className="repo bg-white p-1 my-1"
+                                key={ repo._id }
+                            >
+                                <div>
+                                    <h4>
+                                        <a
+                                            href={ repo.url }
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            { repo.name }
+                                        </a>
+                                    </h4>
+                                    <p>
+                                        { repo.desription }
+                                    </p>
+                                </div>
+                                <div>
+                                    <ul>
+                                        <li className="badge badge-primary">Stars: { repo.stargazers_count }</li>
+                                        <li className="badge badge-dark">Watchers: { repo.wathers_count }</li>
+                                        <li className="badge badge-light">Forks: { repo.forks_count }</li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div>
-                                <ul>
-                                    <li className="badge badge-primary">Stars: { repo.stargazers_count }</li>
-                                    <li className="badge badge-dark">Watchers: { repo.wathers_count }</li>
-                                    <li className="badge badge-light">Forks: { repo.forks_count }</li>
-                                </ul>
-                            </div>
-                        </div>
-                    ))
+                        ))
+                    )
                 )
             }
         </div>

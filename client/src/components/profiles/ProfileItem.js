@@ -13,9 +13,9 @@ const ProfileItem = ({
 }) => {
     return (
         <Fragment>
-            <div class="profile bg-light">
+            <div className="profile bg-light">
                 <img
-                    class="round-img"
+                    className="round-img"
                     src={ avatar }
                     alt=""
                 />
@@ -30,7 +30,7 @@ const ProfileItem = ({
                     <p>{ location && <span>{ location }</span> }</p>
                     <Link
                         to={`/profile/${_id}`}
-                        class="btn btn-primary"
+                        className="btn btn-primary"
                     >
                         View Profile
                     </Link>
@@ -40,10 +40,10 @@ const ProfileItem = ({
                     {
                         skills.slice(0, 4).map((skill, index) => (
                             <li
-                                class="text-primary"
+                                className="text-primary"
                                 key={index}
                             >
-                                <i class="fas fa-check"></i> { skill }
+                                <i className="fas fa-check"></i> { skill }
                             </li>
                         ))
                     }
