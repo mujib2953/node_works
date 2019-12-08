@@ -303,6 +303,7 @@ button {
 @media (max-width: 700px) {
     .container {
         margin-top: 8rem;
+        width: auto;
     }
   
     .hide-sm {
@@ -334,7 +335,7 @@ button {
     }
   
     .navbar h1 {
-        margin-bottom: 1rem;
+        margin-bottom: 0rem;
     }
   
     .navbar .welcome {
@@ -354,7 +355,7 @@ button {
     /* Profile Page */
     .profile-top img,
     .profile img {
-        width: 200px;
+        width: 100px;
         margin: auto;
     }
   
